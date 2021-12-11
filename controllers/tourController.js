@@ -199,7 +199,7 @@ exports.uploadTourPhoto= upload.fields([
   {name:'images',maxCount:3}
 ]);
 exports.resizeTourImages=catchAsync(async(req,res,next)=>{
-  console.log(req.files); 
+  
 
   if(!req.files.imageCover && !req.files.image) return next();
 
@@ -226,9 +226,7 @@ exports.resizeTourImages=catchAsync(async(req,res,next)=>{
       })
       .toFormat('jpeg')
       .toFile(`public/img/tours/${filename}`);
-
       req.body.images.push(filename);
-
     })
     );
   
