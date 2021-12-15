@@ -17,6 +17,7 @@ export const bookTour=async tourId=>{
     
     }
     catch(err){
+        showAlert('Error',err.response.data.message);
         console.log(err);
     }
 }
