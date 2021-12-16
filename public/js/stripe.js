@@ -12,7 +12,7 @@ export const bookTour=async tourId=>{
     console.log(session.data.data.id);
 
     await stripe.redirectToCheckout({
-        sessionId: session.data.data.id
+        sessionId: session.data.session.id
     });
     
     }
