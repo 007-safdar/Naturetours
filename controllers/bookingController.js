@@ -9,8 +9,9 @@ const Booking=require('../models/bookingModel');
 exports.getCheckoutSession=catchAsync(async(req,res,next)=>{
 
     const tour=await Tour.findById(req.params.tourId);
+    console.log('TEst');
     const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-    console.log(req.protocol);
+    console.log(`${req.protocol}://${req.get('host')}/my-tours`);
     const session =await stripe.checkout.sessions.create({
         payment_method_types:['card'],
         // success_url:`${req.protocol}://${req.get('host')}/?tour=${
@@ -30,7 +31,7 @@ exports.getCheckoutSession=catchAsync(async(req,res,next)=>{
                 quantity:1
             }
         ]
-
+        
     });
     res.status(200).json({
         status:'success',
